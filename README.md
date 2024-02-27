@@ -1,17 +1,34 @@
 # RPI5-AI
-## Run an externally accessible AI chatbot on your rPI 5!
+## Run an externally accessible AI chatbot on your Raspberry Pi 5!
 
 ---
 
-todo: (not in order yet)
+## To-do
+> Not in order yet
 
-Set up Pi 5
-Make it boot from nvme
-Blinkt! setup & internetcheck service
-Zerotier
-Clone SD to NVME SSD
+- [x] Set up Pi 5
+- [x] Make it boot from nvme
+- [x] Blinkt! setup & internetcheck service
+- [ ] Zerotier
+- [ ] Portainer / docker
+- [x] Clone SD to NVME SSD
+- [ ] The AI parts
+- [ ] 
 
-set up Portainer / docker
+---
+
+## Item list
+
+> Your list of items may vary
+
+1. Raspberry Pi 5 - ```8 GB``` of RAM is recommended
+2. A NVMe Base / HAT
+3. A case to house the Pi and the Base / HAT
+4. A Pi 5 capable power supply
+5. 32 GB MicroSD card
+6. 1 TB M.2 NVME SSD
+7. Blinkt! RGB LED
+8. 
 
 ---
 
