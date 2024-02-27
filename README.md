@@ -195,6 +195,8 @@ sudo mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MA
 
 ```shell
 curl https://get.pimoroni.com/blinkt | bash
+sudo apt remove python3-rpi.gpio
+sudo pip install rpi-lgpio
 ```
 
   3. Download the ```leds``` folder into your home directory
