@@ -46,7 +46,7 @@ dtparam=pciex1_gen=3
 
 > If this does not work (ie, the nvme drive does not show up later with ``` lsblk ```), use this instead: ```dtparam=nvme```
 
-### 3. Initial boot into it, setting up SSH, hostnames, other basic stuff
+### 3. Initial boot into it, setting up other basic Pi stuff
 
 ```shell
 sudo raspi-config
