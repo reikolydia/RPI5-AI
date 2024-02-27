@@ -17,13 +17,26 @@ set up Portainer / docker
 
 # Set up the PI 5
 
-### 1. Using Raspberry Pi Imager, flash a 64 bit raspbian OS on a SD card (i use headless for this example)
+### 1. Using Raspberry Pi Imager, flash a 64 bit Raspbian OS on a SD card
+
+> A headless/lite OS is used for this example
+
+> Raspberry Pi Imager is available at: https://www.raspberrypi.com/software
 
 1. Using version 1.8.5, select ```RASPBERRY PI 5``` as the Raspberry Pi Device
 
 ![](https://github.com/reikolydia/RPI5-AI/blob/main/images/rpi_imager_1.8.5.png)
 
+2. Click ```NEXT``` then ```EDIT SETTINGS```
+
+![](https://github.com/reikolydia/RPI5-AI/blob/main/images/rpi_imager_next.png)
+
 > Set up a user here, we will use the default raspbian user: ```pi```
+
+3. In ```GENERAL```: Set the hostname, username and password
+4. In ```SERVICES```: Tick ```Enable SSH```
+5. Click ```SAVE```
+6. ```Would you like to apply OS customisation settings?```: ```YES```
 
 ### 2. Before unplugging the SD card from your computer, add to bottom of ```/boot/config.txt```
 
