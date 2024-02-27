@@ -21,9 +21,12 @@
 
 > Your list of items may vary
 
-1. Raspberry Pi 5 - ```8 GB``` of RAM is recommended
+1. Raspberry Pi 5
+   > ```8 GB``` of RAM is recommended
 2. A NVMe Base / HAT
 3. A case to house the Pi and the Base / HAT
+   > Used here in this example that includes both the case and the NVME base is the:
+   > ```Argon NEO 5 M.2 NVME PCIE Case for Raspberry Pi 5```
 4. A Pi 5 capable power supply
 5. 32 GB MicroSD card
 6. 1 TB M.2 NVME SSD
@@ -116,7 +119,20 @@ cd() {
 set completion-ignore-case On
 ```
 
+<br>
+
+> The following is specific to the ```Argon NEO 5 NVME``` case
+
+```shell
+curl https://download.argon40.com/argon-eeprom.sh | bash
+curl https://download.argon40.com/argonneo5.sh | bash
+```
+
 ### 7. Reboot the Pi
+
+```shell
+sudo reboot now
+```
 
 ### 8. Check that the NVME drive is seen
 
