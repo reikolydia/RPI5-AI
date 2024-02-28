@@ -165,6 +165,15 @@ curl -s https://install.zerotier.com/ | sudo bash
 sudo zerotier-cli join <network ID>
 ```
 
+<br>
+
+> Shell In A Box
+> Accessible in a browser at: https://`<Pi 5 IP>`:4200
+
+```shell
+apt install shellinabox
+```
+
 ### 8. Reboot the Pi
 
 ```shell
@@ -269,4 +278,98 @@ sudo dd if=/dev/zero of=/dev/nvme0n1 bs=1024 count=1
 sudo rpi-clone nvme0n1
 ```
 
-### 12. 
+5. Reboot the Pi
+6. Check that the booting is from the NVME SSD
+
+```shell
+lsblk
+```
+
+> It should look like this:
+
+```bash
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+mmcblk0     179:0    0  29.7G  0 disk
+├─mmcblk0p1 179:1    0   512M  0 part
+└─mmcblk0p2 179:2    0  29.2G  0 part
+nvme0n1     259:0    0 931.5G  0 disk
+├─nvme0n1p1 259:1    0   512M  0 part /boot/firmware
+└─nvme0n1p2 259:2    0   931G  0 part /
+```
+
+7. You can remove the SD card from here onwards
+
+### 12. Docker
+
+1. Install Docker
+
+```shell
+curl -sSL https://get.docker.com | sh
+```
+
+2. Set up the Docker user group
+
+```shell
+sudo usermod -aG docker $USER
+```
+
+3. Logout or reboot the Pi
+
+### 13. Portainer
+
+> If you already have a Portainer server installed elsewhere, install the Portainer Agent instead
+
+#### Install Portainer
+
+> Taken from https://github.com/pi-hosted/pi-hosted
+
+1. Pull Portainer Docker container
+
+> Portainer Business Edition
+
+```shell
+sudo docker pull portainer/portainer-ee:latest
+```
+
+> Portainer Community Edition
+
+```shell
+sudo docker pull portainer/portainer-ce:latest
+```
+
+2. Run Portainer
+
+> Portainer Business Edition
+
+```shell
+sudo docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ee:latest --logo "https://pi-hosted.com/pi-hosted-logo.png" --log-level=DEBUG
+```
+
+> Portainer Community Edition
+
+```shell
+sudo docker run -d -p 9000:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://pi-hosted.com/pi-hosted-logo.png"
+```
+
+#### Install Portainer Agent
+
+> If you have already installed Portainer Server, you do not need this step
+
+1. Within Portainer Server, add a new ```environment```
+2. Using the ```Environment Wizard```, choose the appropriate environment type, ```Docker Standalone``` is used for this example
+3. Copy the given command to the Pi
+
+```shell
+docker run -d \
+  -p 9001:9001 \
+  --name portainer_agent \
+  --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /var/lib/docker/volumes:/var/lib/docker/volumes \
+  portainer/agent:2.19.4
+```
+
+4. Add the ```Name``` and the ```Environment address``` with the right port number
+5. Click ```Connect```
+
+
