@@ -72,7 +72,35 @@ dtparam=pciex1_gen=3
 sudo raspi-config
 ```
 
-### 4. Update the pi
+### 4. Set up SSH keys
+
+> On the Pi
+
+```shell
+ssh-keygen -t rsa -b 4096 -t ecdsa -b 521
+```
+
+<br>
+
+> From Windows
+
+```shell
+ssh-keygen.exe -t rsa -b 4096 -t ecdsa -b 521
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh pi@<PI ip address> "cat >> .ssh/authorized_keys"
+type $env:USERPROFILE\.ssh\id_ecdsa.pub | ssh pi@<PI ip address> "cat >> .ssh/authorized_keys"
+```
+
+<br>
+
+> From Linux
+
+```shell
+ssh-keygen -t rsa -b 4096 -t ecdsa -b 521
+ssh-copy-id -i ~/.ssh/id_rsa.pub pi@<PI ip address>
+ssh-copy-id -i ~/.ssh/id_ecdsa.pub pi@<PI ip address>
+```
+
+### 5. Update the pi
 
 ```shell
 sudo apt update
@@ -82,7 +110,7 @@ sudo apt autoremove -y
 sudo apt clean -y
 ```
 
-### 5. Edit the EEPROM
+### 6. Edit the EEPROM
 
 ```shell
 sudo rpi-eeprom-config --edit
@@ -94,7 +122,7 @@ sudo rpi-eeprom-config --edit
 BOOT_ORDER=0xf416
 ```
 
-### 6. Other tweaks
+### 7. Other tweaks
 
 > Add to .bash_aliases
 
@@ -137,13 +165,13 @@ curl -s https://install.zerotier.com/ | sudo bash
 sudo zerotier-cli join <network ID>
 ```
 
-### 7. Reboot the Pi
+### 8. Reboot the Pi
 
 ```shell
 sudo reboot now
 ```
 
-### 8. Check that the NVME drive is seen
+### 9. Check that the NVME drive is seen
 
 ```shell
 lsblk
@@ -190,7 +218,7 @@ nvme0n1     259:0    0 931.5G  0 disk
 - Team MP33
 - Western Digital Black SN750 SE (Phison Controller)
 
-### 9. Set up Blinkt! & internetcheck service
+### 10. Set up Blinkt! & internetcheck service
 
 > This step uses Python 3.11.2, skip this if you do not use Blinkt!'s LEDs to monitor whether the Pi is connected to the internet
 
@@ -211,7 +239,7 @@ sudo pip install rpi-lgpio
   3. Download the ```leds``` folder into your home directory
   4. Create the internetcheck service
 
-### 10. Clone the SD card to the NVME SSD
+### 11. Clone the SD card to the NVME SSD
 
 > Taken from: https://github.com/geerlingguy/rpi-clone
 
@@ -241,3 +269,4 @@ sudo dd if=/dev/zero of=/dev/nvme0n1 bs=1024 count=1
 sudo rpi-clone nvme0n1
 ```
 
+### 12. 
