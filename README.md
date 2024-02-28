@@ -9,7 +9,7 @@
 - [x] Set up Pi 5
 - [x] Make it boot from nvme
 - [x] Blinkt! setup & internetcheck service
-- [ ] Zerotier
+- [x] Zerotier
 - [ ] Portainer / docker
 - [x] Clone SD to NVME SSD
 - [ ] The AI parts
@@ -126,6 +126,15 @@ set completion-ignore-case On
 ```shell
 curl https://download.argon40.com/argon-eeprom.sh | bash
 curl https://download.argon40.com/argonneo5.sh | bash
+```
+
+<br>
+
+> Set up ```Zerotier```
+
+```shell
+curl -s https://install.zerotier.com/ | sudo bash
+sudo zerotier-cli join <network ID>
 ```
 
 ### 7. Reboot the Pi
